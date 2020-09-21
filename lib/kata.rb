@@ -11,7 +11,8 @@ class Wordwrap
   def self.wrap(string, length)
     return string if string.length <= length
 
-    break_point = string.include?(' ') ? string.index(' ') + 1 : length
+    break_point = string.include?(' ') && string.index(' ') <= length ? string.index(' ') + 1 : length
+
     new_string = string[break_point..-1]
     string[0..break_point - 1].strip + '\n' + wrap(new_string, length)
   end
