@@ -48,7 +48,8 @@ RSpec.describe Wordwrap do
     context 'given a string of two words and a wrap length <= the longest word' do
       it 'wraps on whitespace' do
         expect(described_class.wrap('big bad', 3)).to eq('big\nbad')
-        expect(described_class.wrap('big cat', 3)).to eq('big\ncat')
+        expect(described_class.wrap('big cat', 3)).to eq('big\ncat') 
+        expect(described_class.wrap('bigger tiger', 6)).to eq('bigger\ntiger') 
       end
     end
   end
