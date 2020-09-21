@@ -64,6 +64,21 @@ RSpec.describe Wordwrap do
       it 'wraps once on whitespace and once on the longest word' do
         expect(described_class.wrap('came saw conquered', 5)).to eq('came\nsaw\nconqu\nered')
         expect(described_class.wrap('conquered came saw', 5)).to eq('conqu\nered\ncame\nsaw')
+        expect(described_class.wrap('came conquered saw', 5)).to eq('came\nconqu\nered\nsaw')
+      end
+    end
+
+    context 'given 4 words and a wrap length shorter than the longest word' do
+      it 'wraps every two words or on whitespace' do
+        expect(described_class.wrap('hasta la vista baby', 2)).to eq('ha\nst\na\nla\nvi\nst\na\nba\nby')
+      end
+    end
+
+    context 'given a string and a wrap length longer than the longest word' do
+      it 'wraps every two words or on whitespace' do
+        expect(described_class.wrap('big bad wolf', 7)).to eq('big\nbad\nwolf')
+        expect(described_class.wrap('big baddest wolf', 10)).to eq('big\nbaddest\nwolf')
+        expect(described_class.wrap('big friendly wolf', 10)).to eq('big\nfriendly\nwolf')
       end
     end
   end
