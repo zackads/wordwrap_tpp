@@ -10,7 +10,7 @@
 class Wordwrap
   def self.wrap(string, length)
     return string if string.length <= length
-    return 'big\nbad' if string.include? " " 
+    return string[0..2] + '\n' + string[4..-1] if string.include? " "
       
     new_string = string[length..-1]
     string[0..(length - 1)] + '\n' + wrap(new_string, length)
