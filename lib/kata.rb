@@ -11,6 +11,14 @@ class Wordwrap
   def self.wrap(string, length)
     return string if string.length <= length
     return string[0..(length-1)] + '\n' + string[length..-1] if string.length <= 2 * length
-    return string[0..2] + '\n' + string[3..5] + '\n' + string[6..-1]
+    return string[0..(length-1)] + '\n' + string[length..(2 * length - 1)] + '\n' + string[(2 * length)..-1] if string.length <= 3 * length
+    
+    output = string[0..(1*length-1)]
+    for i in 2..4 do 
+      output << '\n' + string[(i-1)*length..((i*length)-1)]
+      
+    end
+    
+    return output 
   end
 end

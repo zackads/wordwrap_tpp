@@ -48,10 +48,30 @@ RSpec.describe Wordwrap do
       end
     end
 
-    context 'given another string 2x longer than wrap length 3' do
+    context 'given a string 2x longer than wrap length 3' do
       it 'wraps at the length-th position twice' do
         expect(described_class.wrap('beautiful', 3)).to eq('bea\nuti\nful')
+        expect(described_class.wrap('beaitiful', 3)).to eq('bea\niti\nful')
       end
     end
+
+    context 'given another string 2x longer than wrap length 3' do
+      it 'wraps at the length-th position twice' do
+        expect(described_class.wrap('parrot', 2)).to eq('pa\nrr\not')
+      end
+    end
+
+    context 'given another string 2x longer than wrap length 4' do
+      it 'wraps at the length-th position twice' do
+        expect(described_class.wrap('applesauce', 4)).to eq('appl\nesau\nce')
+      end
+    end
+
+    context 'given another string 3x longer than wrap length 2' do
+      it 'wraps at the length-th position thrice' do
+        expect(described_class.wrap('chocolat', 2)).to eq('ch\noc\nol\nat')
+      end
+    end
+
   end
 end
