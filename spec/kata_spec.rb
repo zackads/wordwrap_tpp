@@ -52,10 +52,18 @@ RSpec.describe Wordwrap do
         expect(described_class.wrap('bigger tiger', 6)).to eq('bigger\ntiger') 
       end
     end
+
     context 'given 3 words of a similar length and a wrap length <= the longest' do 
       it 'wraps on whitespace' do 
-        expect(described_class.wrap('big bad wolf',4)).to eq('big\nbad\nwolf')
+        expect(described_class.wrap('big bad wolf', 4)).to eq('big\nbad\nwolf')
+        expect(described_class.wrap('came saw conq', 4)).to eq('came\nsaw\nconq')
       end
-    end 
+    end
+
+    context 'given 3 words and a wrap length shorter than the longest word' do
+      it 'wraps once on whitespace and once on the longest word' do
+        expect(described_class.wrap('came saw conquered', 5)).to eq('came\nsaw\nconqu\nered')
+      end
+    end
   end
 end
