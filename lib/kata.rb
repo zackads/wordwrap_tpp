@@ -9,11 +9,9 @@
 
 class Wordwrap
   def self.wrap(string, length)
-    if string.length <= length
-      string
-    else
-      new_string = string[length..-1]
-      string[0..(length - 1)] + '\n' + wrap(new_string, length)
-    end
+    return string if string.length <= length
+
+    new_string = string[length..-1]
+    string[0..(length - 1)] + '\n' + wrap(new_string, length)
   end
 end
