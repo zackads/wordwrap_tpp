@@ -44,5 +44,11 @@ RSpec.describe Wordwrap do
         expect(described_class.wrap('bnocodag', 2)).to eq('bn\noc\nod\nag')
       end
     end
+
+    context 'given a string of two words and a wrap length <= the longest word' do
+      it 'wraps on whitespace' do
+        expect(described_class.wrap('big bad', 3)).to eq('big\nbad')
+      end
+    end
   end
 end
